@@ -1,26 +1,23 @@
 import unittest
-from uxi.symbolic import parse, evaluate, LogicGraph
+from uxi.symbolic import parse, evaluate
 
 class TestSymbolic(unittest.TestCase):
+    def test_parse_and_evaluate_true(self):
+        expr = "True and not False"
+        graph = parse(expr)
+        result = evaluate(graph)
+        self.assertTrue(result)
 
-    def test_parse_creates_logic_graph(self):
-        text = "True and not False"
-        logic_graph = parse(text)
-        self.assertIsInstance(logic_graph, LogicGraph)
-        self.assertTrue(len(logic_graph.graph.nodes) > 0)
+    def test_parse_and_evaluate_false(self):
+        expr = "False or (False and True)"
+        graph = parse(expr)
+        result = evaluate(graph)
+        self.assertFalse(result)
 
-    def test_evaluate_returns_correct_value(self):
-        text_true = "True"
-        text_false = "False"
-        lg_true = parse(text_true)
-        lg_false = parse(text_false)
-        self.assertTrue(evaluate(lg_true))
-        self.assertFalse(evaluate(lg_false))
-
-    def test_evaluate_no_true_false_returns_none(self):
-        text = "and or not"
-        lg = parse(text)
-        self.assertIsNone(evaluate(lg))
+    def test_parse_invalid_expression(self):
+        expr = "True and or False"
+        with self.assertRaises(Exception):
+            graph = parse(expr)
 
 if __name__ == "__main__":
     unittest.main()
