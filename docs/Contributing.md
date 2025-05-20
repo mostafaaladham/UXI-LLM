@@ -1,32 +1,20 @@
 # Contributing to UXI-LLM
 
-Thank you for considering contributing to UXI-LLM! Please follow these guidelines to ensure a smooth collaboration.
+Thank you for considering contributing to UXI-LLM! We welcome contributions of all kinds: bug fixes, documentation improvements, feature requests, and more.
 
 ## How to Contribute
 
-- Fork the repository and create a feature branch.  
-- Write clear, concise commit messages.  
-- Ensure your code follows PEP 8 style for Python and project conventions.  
-- Include tests for new features or bug fixes.  
-- Update documentation as needed.
+1. Fork the repository and create your branch from `main`.
+2. Follow the coding style and write clear, concise commit messages.
+3. Write tests for new features or bug fixes.
+4. Submit a pull request with a detailed description of your changes.
 
-## Code Style
+## Code of Conduct
 
-- Use descriptive variable and function names.  
-- Document functions with docstrings.  
-- Keep functions and classes focused and modular.
-
-## Pull Requests
-
-- Submit PRs against the `main` branch.  
-- Describe your changes clearly and link relevant issues if any.  
-- Be responsive to code review feedback.
+Please respect all community members and follow the [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## Reporting Issues
 
-- Use the GitHub issues page to report bugs or suggest features.  
-- Provide detailed steps to reproduce bugs.
+Use the GitHub Issues tracker to report bugs or suggest features.
 
-Thank you for helping make UXI-LLM better!
-
----
+We appreciate your help in making UXI-LLM better!
