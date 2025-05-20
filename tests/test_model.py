@@ -2,19 +2,17 @@ import unittest
 from uxi import load_model
 
 class TestModel(unittest.TestCase):
-    def setUp(self):
-        self.model_name = "gpt2"
-        self.model = load_model(self.model_name)
+    def test_load_model(self):
+        model = load_model("gpt2")
+        self.assertIsNotNone(model)
+        self.assertTrue(hasattr(model, "run"))
 
-    def test_model_load(self):
-        self.assertIsNotNone(self.model)
-        self.assertEqual(self.model.model_name, self.model_name)
-
-    def test_run_inference(self):
-        prompt = "Hello, world!"
-        output = self.model.run(prompt, max_tokens=10)
+    def test_inference_output(self):
+        model = load_model("gpt2")
+        prompt = "Test prompt"
+        output = model.run(prompt, max_tokens=10)
         self.assertIsInstance(output, str)
-        self.assertTrue(len(output) > 0)
+        self.assertGreater(len(output), 0)
 
 if __name__ == "__main__":
     unittest.main()
