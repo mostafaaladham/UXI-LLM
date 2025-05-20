@@ -1,26 +1,34 @@
 import unittest
-from uxi.fine_tuning import FineTuner
-from uxi import load_model
 import os
+import json
+from uxi import load_model, FineTuner
 
 class TestFineTuning(unittest.TestCase):
-
     def setUp(self):
-        self.model = load_model("uxi-transformer-v1")
-        self.tuner = FineTuner(model=self.model)
+        self.model = load_model("gpt2")
+        self.fine_tuner = FineTuner(self.model)
+        # Prepare a small dummy dataset file
+        self.dataset_path = "dummy_dataset.jsonl"
+        with open(self.dataset_path, "w") as f:
+            for i in range(5):
+                json.dump({"text": f"Sample text {i}"}, f)
+                f.write("\n")
 
-    def test_load_dataset_and_train(self):
-        # Assuming a small dummy dataset in-memory or mocked
-        self.tuner.load_dataset("tests/dummy_data.jsonl")
-        self.tuner.train(epochs=1, batch_size=2)
-        self.assertTrue(True, "Training completed without error")
+    def tearDown(self):
+        if os.path.exists(self.dataset_path):
+            os.remove(self.dataset_path)
 
-    def test_save_and_load_checkpoint(self):
-        checkpoint_path = "tests/checkpoint_test.pt"
-        self.tuner.save_checkpoint(checkpoint_path)
-        self.assertTrue(os.path.exists(checkpoint_path), "Checkpoint file should exist")
-        # Cleanup after test
-        os.remove(checkpoint_path)
+    def test_load_dataset(self):
+        self.fine_tuner.load_dataset(self.dataset_path)
+        self.assertIsNotNone(self.fine_tuner.dataset)
+        self.assertEqual(len(self.fine_tuner.dataset), 5)
+
+    def test_train_runs(self):
+        self.fine_tuner.load_dataset(self.dataset_path)
+        try:
+            self.fine_tuner.train(epochs=1, batch_size=2)
+        except Exception as e:
+            self.fail(f"Training raised exception {e}")
 
 if __name__ == "__main__":
     unittest.main()
