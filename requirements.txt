@@ -1,37 +1,11 @@
-# Core ML Framework
-torch>=2.1.0
-
-# Tokenization & Text Preprocessing
-tokenizers>=0.13.3
-sentencepiece>=0.1.99
-
-# Symbolic Reasoning Libraries
-sympy>=1.12
-z3-solver>=4.12.2
-kanren>=0.2.3  # MiniKanren symbolic logic
-
-# API + CLI Interface
-fastapi>=0.110.0
-uvicorn[standard]>=0.27.0
-typer[all]>=0.9.0
-
-# Config Parsing
-pyyaml>=6.0.1
-
-# Dataset & File Handling
-tqdm>=4.66.1
-pandas>=2.2.2
-datasets>=2.18.0
-
-# Evaluation Tools
-scikit-learn>=1.5.0
-matplotlib>=3.9.0
-
-# Testing
-pytest>=8.1.1
-
-# Optional: Visualization for debugging graphs
-graphviz>=0.20.1
-
-# Optional: Parallel CPU execution
-joblib>=1.4.2
+torch>=2.0.0
+transformers>=4.30.0
+datasets>=2.13.0
+numpy>=1.25.0
+scipy>=1.11.0
+networkx>=3.1
+protobuf>=4.23.0
+pytest>=7.4.0
+fastapi>=0.99.0
+uvicorn>=0.23.0
+pydantic>=2.7.0
