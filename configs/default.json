@@ -1,6 +1,6 @@
 {
   "model": {
-    "vocab_size": 50257,
+    "vocab_size": 32000,
     "d_model": 512,
     "nhead": 8,
     "num_layers": 6,
@@ -8,17 +8,17 @@
     "dropout": 0.1
   },
   "training": {
-    "batch_size": 32,
-    "epochs": 5,
-    "learning_rate": 0.0003,
-    "weight_decay": 0.01
+    "train_data_path": "data/train_dataset.json",
+    "batch_size": 64,
+    "learning_rate": 0.0001,
+    "epochs": 10,
+    "save_every": 1
   },
-  "data": {
-    "dataset_name": "wikitext",
-    "split": "train"
+  "evaluation": {
+    "eval_data_path": "data/eval_dataset.json",
+    "batch_size": 64
   },
   "paths": {
-    "save_model": "checkpoints/uxi_llm.pt",
-    "log_dir": "logs/"
+    "save_model": "checkpoints/uxi_llm_model.pt"
   }
 }
