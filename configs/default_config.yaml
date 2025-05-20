@@ -1,0 +1,47 @@
+# UXI-LLM Default Configuration
+
+model:
+  name: UXIHybridModel
+  architecture: transformer-symbolic
+  hidden_size: 512
+  num_layers: 8
+  num_heads: 8
+  dropout: 0.1
+  max_position_embeddings: 1024
+  vocab_size: 50257
+
+tokenizer:
+  type: sentencepiece
+  model_file: ./configs/spm.model
+  add_special_tokens: true
+
+symbolic_engine:
+  enabled: true
+  engine: z3
+  rules_path: ./symbolic/rules/base_rules.krl
+
+training:
+  epochs: 10
+  batch_size: 32
+  learning_rate: 0.0005
+  weight_decay: 0.01
+  warmup_steps: 500
+  save_every_n_steps: 1000
+
+plugins:
+  enable_plugins: true
+  plugin_path: ./plugins/
+
+api:
+  enable_rest: true
+  host: 0.0.0.0
+  port: 8000
+
+logging:
+  level: info
+  save_logs: true
+  log_dir: ./logs/
+
+output:
+  model_save_path: ./checkpoints/
+  export_format: torchscript
